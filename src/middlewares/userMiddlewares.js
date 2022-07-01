@@ -9,7 +9,7 @@ export const validateLogin = async (req, res, next) => {
     try {
         const userId = await validationService.validateUser(credential);
         if (!userId) {
-            return res.status(404).send('E-mail ou senha inválidos.');
+            return res.status(401).send('E-mail ou senha inválidos.');
         }
         
         res.locals.userId = userId;
