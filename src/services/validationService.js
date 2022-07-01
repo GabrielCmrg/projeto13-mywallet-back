@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 
 import { userService } from './index.js'
 
-import { loginSchema, signupSchema } from '../models/schemas.js';
+import { loginSchema, signupSchema, headerSchema } from '../models/schemas.js';
 
 export const validateLogin = function (body) {
     const mutableBody = { ...body };
@@ -34,6 +34,17 @@ export const validateUser = async (credential) => {
 export const validateSignup = function (body) {
     const mutableBody = { ...body };
     const validation = signupSchema.validate(mutableBody);
+
+    if (validation.error) {
+        return false;
+    }
+
+    return validation.value;
+};
+
+export const validateHeader = function (headers) {
+    const mutableHeaders = { ...headers };
+    const validation = headerSchema.validate(mutableHeaders);
 
     if (validation.error) {
         return false;
