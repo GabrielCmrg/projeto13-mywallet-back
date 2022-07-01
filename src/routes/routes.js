@@ -9,6 +9,7 @@ const router = express.Router();
 router.post('/login', userMiddlewares.validateLogin, userController.signin);
 
 // sign-up routes
+router.post('/sign-up', userMiddlewares.validateSignup);
 
 
 // entries routes
