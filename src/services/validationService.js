@@ -62,4 +62,13 @@ export const validateEntry = function (body) {
     }
 
     return validation.value;
-}
+};
+
+export const validateToken = async (token) => {
+    const session = await userService.getSessionByToken(token);
+    if (!session) {
+        return false;
+    }
+
+    return session.userId;
+};
