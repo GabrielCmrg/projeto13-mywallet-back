@@ -10,3 +10,14 @@ export const signin = async (req, res) => {
         return res.sendStatus(500);
     }
 };
+
+export const signup = async (req, res) => {
+    try {
+        const signupInfos = res.locals.signupInfos;
+        await userService.registerUser(signupInfos);
+        return res.sendStatus(201);
+    } catch (error) {
+        console.error(error);
+        return res.sendStatus(500);
+    }
+};
