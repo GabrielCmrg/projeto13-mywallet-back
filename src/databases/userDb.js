@@ -19,6 +19,10 @@ export const getSessionToken = async function (id) {
     return session?.token;
 };
 
-export const createSession = async function (userId, token) {
-    await db.collection(sessions).insertOne({ userId, token });
+export const createSession = async function (session) {
+    await db.collection(sessions).insertOne(session);
+};
+
+export const createUser = async function (user) {
+    await db.collection(users).insertOne(user);
 };

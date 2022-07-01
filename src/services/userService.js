@@ -17,7 +17,8 @@ export const retrieveToken = async function (id) {
 
     if (!token) {
         const newToken = uuid();
-        await userDb.createSession(id, newToken);
+        const session = { userId: id, token: newToken };
+        await userDb.createSession(session);
         return newToken;
     }
 
