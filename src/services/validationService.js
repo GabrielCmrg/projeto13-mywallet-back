@@ -52,3 +52,14 @@ export const validateHeader = function (headers) {
 
     return validation.value;
 };
+
+export const validateEntry = function (body) {
+    const mutableBody = { ...body };
+    const validation = entrySchema.validate(mutableBody);
+
+    if (validation.error) {
+        return false;
+    }
+
+    return validation.value;
+}
