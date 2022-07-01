@@ -6,11 +6,16 @@ export const validateLogin = async (req, res, next) => {
         return res.sendStatus(422);
     }
 
-    const userId = await validationService.validateUser(credential);
-    if (!userId) {
-        return res.status(404).send('E-mail ou senha inválidos.');
+    try {
+        const userId = await validationService.validateUser(credential);
+        if (!userId) {
+            return res.status(404).send('E-mail ou senha inválidos.');
+        }
+        
+        res.locals.userId = userId;
+    } catch (error) {
+        console.error(error);
+        return res.sendStatus(500);
     }
-
-    res.locals.userId = userId;
     next();
 };
