@@ -9,7 +9,7 @@ const signupSchema = joi.object({
     name: joi.string().required(),
     email: joi.string().email().required(),
     password: joi.string().required(),
-    checkPassword: joi.ref(password),
+    checkPassword: joi.string().equal(joi.ref('password')),
 });
 
 const headerSchema = joi.object({
@@ -19,4 +19,11 @@ const headerSchema = joi.object({
         .required(),
 }).unknown(true);
 
-export { loginSchema, signupSchema, headerSchema };
+const entrySchema = joi.object({
+    date: joi.date().raw().required(),
+    description: joi.string().required(),
+    amount: joi.number().greater(0).required(),
+    type: joi.string().valid('debit', 'credit').required(),
+});
+
+export { loginSchema, signupSchema, headerSchema, entrySchema };

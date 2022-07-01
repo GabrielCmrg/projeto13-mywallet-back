@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 
 import { userService } from './index.js'
 
-import { loginSchema, signupSchema, headerSchema } from '../models/schemas.js';
+import { loginSchema, signupSchema, headerSchema, entrySchema } from '../models/schemas.js';
 
 export const validateLogin = function (body) {
     const mutableBody = { ...body };
