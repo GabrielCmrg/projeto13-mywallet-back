@@ -1,4 +1,5 @@
 import { v4 as uuid } from 'uuid';
+import bcrypt from 'bcrypt';
 
 import { userDb } from '../databases/index.js';
 
@@ -21,4 +22,12 @@ export const retrieveToken = async function (id) {
     }
 
     return token;
+};
+
+export const registerUser = async function (infos) {
+    const { name, email, password } = infos;
+    const passwordHash = bcrypt.hashSync(password, 10);
+    const entries = {};
+    const user = { name, email, password: passwordHash, entries };
+    await userDb.createUser(user);
 };
