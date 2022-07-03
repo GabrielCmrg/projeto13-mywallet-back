@@ -32,3 +32,12 @@ export const registerUser = async function (infos) {
     const user = { name, email, password: passwordHash, entries };
     await userDb.createUser(user);
 };
+
+export const getSessionByToken = async function (token) {
+    const session = await userDb.getSessionByToken(token);
+    if (!session) {
+        return false;
+    }
+
+    return session;
+};
