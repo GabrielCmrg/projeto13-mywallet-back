@@ -4,6 +4,7 @@ import { userMiddlewares } from '../middlewares/index.js';
 import { userController } from '../controllers/index.js';
 
 import { entriesMiddlewares } from '../middlewares/index.js';
+import { entryController } from '../controllers/index.js';
 
 const router = express.Router();
 
@@ -14,6 +15,6 @@ router.post('/sign-up', userMiddlewares.validateSignup, userController.signup);
 router.post('/login', userMiddlewares.validateLogin, userController.signin);
 
 // entries routes
-router.post('/entries', entriesMiddlewares.validateEntry);
+router.post('/entries', entriesMiddlewares.validateEntry, entryController.processEntry);
 
 export default router;
