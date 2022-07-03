@@ -22,3 +22,24 @@ export const validateEntry = async (req, res, next) => {
     }
     next();
 };
+
+export const validateHeader = async (req, res, next) => {
+    const { authorization } = validationService.validateHeader(req.headers);
+    if (!authorization) {
+        return res.sendStatus(422);
+    }
+
+    try {
+        const token = authorization.replace('Bearer ', '');
+        const userId = await validationService.validateToken(token);
+        if (!userId) {
+            return res.sendStatus(401);
+        }
+
+        res.locals.userId = userId;
+    } catch (error) {
+        console.error(error);
+        return res.sendStatus(500);
+    }
+    next();
+};
