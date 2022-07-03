@@ -26,3 +26,15 @@ export const createSession = async function (session) {
 export const createUser = async function (user) {
     await db.collection(users).insertOne(user);
 };
+
+export const createUserEntry = async function (userId, entry) {
+    const id = new ObjectId(userId);
+    const { modifiedCount } = await db.collection(users).updateOne({ _id: id }, {
+        $push: { entries: entry }
+    });
+    if (modifiedCount) {
+        return true;
+    }
+
+    return false;
+};
