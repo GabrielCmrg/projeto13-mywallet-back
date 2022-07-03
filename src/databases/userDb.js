@@ -38,3 +38,10 @@ export const createUserEntry = async function (userId, entry) {
 
     return false;
 };
+
+export const getUserById = async function (userId) {
+    const id = new ObjectId(userId);
+    const user = await db.collection(users).findOne({ _id: id });
+
+    return user;
+};
