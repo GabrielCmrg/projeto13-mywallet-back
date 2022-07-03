@@ -45,3 +45,9 @@ export const getUserById = async function (userId) {
 
     return user;
 };
+
+export const getSessionByToken = async function (token) {
+    const session = await db.collection(sessions).findOne({ token });
+
+    return session;
+};
