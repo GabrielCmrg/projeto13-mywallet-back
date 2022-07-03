@@ -15,7 +15,7 @@ const signupSchema = joi.object({
 const headerSchema = joi.object({
     authorization: joi
         .string()
-        .pattern(/^Bearer [0-9a-fA-F]{8}(-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}$/g)
+        .pattern(/^Bearer [0-9a-fA-F]{8}(-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}$/)
         .required(),
 }).unknown(true);
 
