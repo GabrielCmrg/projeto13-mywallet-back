@@ -16,6 +16,6 @@ router.post('/login', userMiddlewares.validateLogin, userController.signin);
 
 // entries routes
 router.post('/entries', entriesMiddlewares.validateEntry, entryController.processEntry);
-router.get('/entries', entriesMiddlewares.validateHeader, entryController.getUserEntries);
+router.get('/entries', entriesMiddlewares.validateHeader, userController.getUser);
 
 export default router;

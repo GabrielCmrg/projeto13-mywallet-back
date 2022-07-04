@@ -41,3 +41,12 @@ export const getSessionByToken = async function (token) {
 
     return session;
 };
+
+export const getUserById = async function (userId) {
+    const user = await userDb.getUserById(userId);
+    if (!user) {
+        return false;
+    }
+
+    return user;
+};

@@ -15,18 +15,3 @@ export const processEntry = async (req, res) => {
         return res.sendStatus(500);
     }
 };
-
-export const getUserEntries = async (req, res) => {
-    const userId = res.locals.userId;
-    try {
-        const entries = await entryService.getAllUserEntries(userId);
-        if (!entries) {
-            return res.sendStatus(404);
-        }
-
-        return res.json(entries);
-    } catch (error) {
-        console.error(error);
-        return res.sendStatus(500);
-    }
-};

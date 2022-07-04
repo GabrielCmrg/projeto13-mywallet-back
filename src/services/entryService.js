@@ -5,12 +5,3 @@ export const addEntryToUser = async function (entry, userId) {
 
     return created;
 };
-
-export const getAllUserEntries = async function (userId) {
-    const user = await userDb.getUserById(userId);
-    if (!user) {
-        return false;
-    }
-
-    return user.entries;
-};
