@@ -20,7 +20,7 @@ const headerSchema = joi.object({
 }).unknown(true);
 
 const entrySchema = joi.object({
-    date: joi.date().raw().required(),
+    date: joi.string().pattern(/([0-2][0-9]\/0[0-9]|3[0-1]\/1[0-2])/g).required(),
     description: joi.string().required(),
     amount: joi.number().greater(0).required(),
     type: joi.string().valid('debit', 'credit').required(),
