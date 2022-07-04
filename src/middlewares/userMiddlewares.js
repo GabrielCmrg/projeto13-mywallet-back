@@ -20,7 +20,7 @@ export const validateLogin = async (req, res, next) => {
     next();
 };
 
-export const validateSignup = (req, res, next) => {
+export const validateSignup = async (req, res, next) => {
     const signupInfos = validationService.validateSignup(req.body);
     if (!signupInfos) {
         return res.sendStatus(422);
