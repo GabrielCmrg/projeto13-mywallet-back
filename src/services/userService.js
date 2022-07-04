@@ -27,9 +27,10 @@ export const retrieveToken = async function (id) {
 
 export const registerUser = async function (infos) {
     const { name, email, password } = infos;
+    const capitalized = name.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join();
     const passwordHash = bcrypt.hashSync(password, 10);
     const entries = [];
-    const user = { name, email, password: passwordHash, entries };
+    const user = { name: capitalized, email, password: passwordHash, entries };
     await userDb.createUser(user);
 };
 
