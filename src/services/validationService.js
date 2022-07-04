@@ -72,3 +72,12 @@ export const validateToken = async (token) => {
 
     return session.userId;
 };
+
+export const isEmailInUse = async (email) => {
+    const emailOwner = await userService.getUserByEmail(email);
+    if (emailOwner) {
+        return true;
+    }
+
+    return false;
+};

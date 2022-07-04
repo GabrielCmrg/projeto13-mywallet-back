@@ -26,6 +26,17 @@ export const validateSignup = (req, res, next) => {
         return res.sendStatus(422);
     }
 
-    res.locals.signupInfos = signupInfos;
+    try {
+        const { email } = signupInfos;
+        const emailAlreadyExist = await validationService.isEmailInUse(email);
+        if (emailAlreadyExist) {
+            return res.status(409).send('E-mail já está em uso.');
+        }
+        
+        res.locals.signupInfos = signupInfos;
+    } catch (error) {
+        console.error(error);
+        return res.sendStatus(500);
+    }
     next();
 };
